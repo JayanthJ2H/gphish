@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const email = params.get('email') || '';
+            const targetUrl = `http://192.168.139.206:3000/api/clicked?email=${encodeURIComponent(email)}`;
+            window.location.href = targetUrl;
+        };
+    </script>
+</head>
+<body>
+    <p>If you are not redirected automatically, <a id="redirectLink" href="#">click here</a>.</p> 
+</body>
+</html>
