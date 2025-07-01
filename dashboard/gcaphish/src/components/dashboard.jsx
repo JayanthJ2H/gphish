@@ -7,7 +7,7 @@ export default function Dashboard() {
     const [message, setMessage] = useState('');
 
     const fetchLogs = () => {
-        axios.post('https://amazon-support.co.in:3000/api/track')
+        axios.post('http://98.70.37.51:3000/api/track')
             .then(response => {
                 console.log('🚀 Logs loaded:', response.data);
 
@@ -29,7 +29,7 @@ export default function Dashboard() {
     }, []);
 
     const handleSendEmail = () => {
-        axios.post('https://amazon-support.co.in:3000/sendEmail')
+        axios.post('http://98.70.37.51:3000/sendEmail')
             .then(() => {
                 showMessage('📧 Emails sent successfully!');
             })
@@ -45,7 +45,7 @@ export default function Dashboard() {
     };
 
     const clearData = () => {
-        axios.post('https://amazon-support.co.in:3000/api/cleardata')
+        axios.post('http://98.70.37.51:3000/api/cleardata')
             .then(() => {
                 showMessage('✅ Data cleared successfully!');
                 fetchLogs(); 
